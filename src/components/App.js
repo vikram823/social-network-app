@@ -17,7 +17,6 @@ class App extends React.Component {
       <Router>
         <div>
           <Navbar />
-          {/* <PostsList posts={posts} /> */}
         </div>
 
         <Switch>
@@ -37,9 +36,9 @@ class App extends React.Component {
   }
 }
 
-function mapStateToProps(state) {
+function mapStateToProps({posts}) {
   return {
-    posts: state.posts,
+    posts,
   };
 }
 

@@ -1,15 +1,20 @@
 import React, { Component } from "react";
-import { login } from "../actions/auth";
+import { clearAuthState, login } from "../actions/auth";
 import { connect } from "react-redux";
+import { Redirect } from "react-router";
 
 class Login extends Component {
   constructor(props) {
     super(props);
-    
+
     this.state = {
       email: "",
       password: "",
     };
+  }
+
+  componentWillUnmount() {
+    this.props.dispatch(clearAuthState());
   }
 
   handleEmailChange = (e) => {
@@ -35,12 +40,15 @@ class Login extends Component {
   };
 
   render() {
-    const { error, inProgress } = this.props.auth;
+    const { error, inProgress, isLoggedIn } = this.props.auth;
+
+    if(isLoggedIn){
+      return(<Redirect to="/"/>)
+    }
     return (
-      
       <form className="login-form">
         <span className="login-signup-header">Log In</span>
-        {error && <div className="alert-error-dialog">{error}</div>}
+        {error && <div className="alert error-dialog">{error}</div>}
         <div className="field">
           <input
             type="email"
@@ -53,7 +61,7 @@ class Login extends Component {
           <input
             type="password"
             placeholder="Password"
-            required 
+            required
             onChange={this.handlePasswordChange}
           />
         </div>
@@ -64,7 +72,7 @@ class Login extends Component {
             </button>
           ) : (
             <button onClick={this.handelFormSubmit} disabled={inProgress}>
-              Log In 
+              Log In
             </button>
           )}
         </div>
@@ -73,7 +81,7 @@ class Login extends Component {
   }
 }
 
-function mapStateToProps({auth}) {
+function mapStateToProps({ auth }) {
   return {
     auth,
   };

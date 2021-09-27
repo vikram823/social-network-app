@@ -7,6 +7,7 @@ import {
   SIGNUP_START,
   SIGNUP_SUCCESS,
   SIGNUP_FAILED,
+  CLEAR_AUTH,
 } from "./actionTypes";
 import { APIs } from "../helpers/url";
 import { getFormBody } from "../helpers/utils";
@@ -45,6 +46,7 @@ export function login(email, password) {
       })
       .then((data) => {
         if (data.success) {
+          localStorage.setItem("token", data.data.token);
           dispatch(loginSuccess(data.data.user));
           return;
         }
@@ -83,9 +85,7 @@ export function signup(email, password, confirmPassword, name) {
     })
       .then((response) => response.json())
       .then((data) => {
-        
         if (data.success) {
-          
           localStorage.setItem("token", data.data.token);
           dispatch(signupSuccessful(data.data.user));
           return;
@@ -112,5 +112,11 @@ export function signupSuccessful(user) {
   return {
     type: SIGNUP_SUCCESS,
     user,
+  };
+}
+
+export function clearAuthState(user) {
+  return {
+    type: CLEAR_AUTH,
   };
 }

@@ -14,6 +14,11 @@ class UserProfile extends Component {
   render() {
     const { profile } = this.props;
     const user = profile.user;
+
+    if (profile.inProgress) {
+      return <h1>LOADING...</h1>;
+    }
+
     return (
       <div className="settings">
         <div className="img-container">

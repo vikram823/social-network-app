@@ -14,7 +14,7 @@ export default function posts(state = initialProfileState, action) {
         ...state,
         user: action.user,
         success: true,
-        inProgress: true
+        inProgress: false
       };
     case USER_PROFILE_FAILED:
       return {

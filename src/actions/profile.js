@@ -31,9 +31,7 @@ export function fetchUserProfile(userId) {
   return (dispatch) => {
     dispatch(startUserProfileFetch());
     const url = APIs.userProfile(userId);
-
     fetch(url, {
-      method: "POST",
       headers: {
         "Content-Type": "application/x-www-form-urlencoded",
         Authorization: `Bearer ${getAuthTokenFromLocalStorage()}`,
@@ -41,7 +39,12 @@ export function fetchUserProfile(userId) {
     })
       .then((response) => response.json())
       .then((data) => {
-        dispatch(UserProfileSuccess(data.data.user));
+        console.log("DATA", data);
+        if (data.success) {
+          dispatch(UserProfileSuccess(data.data.user));
+          return;
+        }
+        dispatch(UserProfileFailed("SOMETHING WENT WRONG"));
       });
   };
 }

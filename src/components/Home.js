@@ -1,16 +1,17 @@
-import React, { Component } from 'react';
-import {PostsList} from "./index";
+import React, { Component } from "react";
+import { PostsList, FriendsList } from "./index";
 
 class Home extends Component {
+  render() {
+    const { posts, friends, isLoggedIn } = this.props;
     
-    render() {
-        const {posts} = this.props
-        return (
-            <div className="home">
-                <PostsList posts={posts}/>
-            </div>
-        );
-    }
+    return (
+      <div className="home">
+        <PostsList posts={posts} />
+        {isLoggedIn && <FriendsList friends={friends} />}
+      </div>
+    );
+  }
 }
 
 export default Home;

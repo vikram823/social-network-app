@@ -147,10 +147,10 @@ export function editUser(userId, password, confirmPassword, name) {
         Authorization: `Bearer ${getAuthTokenFromLocalStorage()}`,
       },
       body: getFormBody({
-        userId,
+        name,
         password,
         confirm_password: confirmPassword,
-        name,
+        id: userId,
       }),
     })
       .then((response) => response.json())

@@ -8,6 +8,7 @@ import jwt_decode from "jwt-decode";
 import { authenticateUser } from "../actions/auth";
 import { Redirect } from "react-router";
 import { getAuthTokenFromLocalStorage } from "../helpers/utils";
+import UserProfile from "./UserProfile";
 
 const PrivateRoute = (privateRouteProps) => {
   const { isLoggedIn, path, component: Component } = privateRouteProps;
@@ -71,6 +72,11 @@ class App extends React.Component {
           <PrivateRoute
             path="/settings"
             component={Settings}
+            isLoggedIn={auth.isLoggedIn}
+          />
+          <PrivateRoute
+            path="/user/:userId"
+            component={UserProfile}
             isLoggedIn={auth.isLoggedIn}
           />
           <Route component={Page404}></Route>

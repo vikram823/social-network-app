@@ -9,17 +9,21 @@ import Settings from "./Settings";
 import FriendsList from "./FriendsList";
 import FriendsListItem from "./FriendsListItem";
 import CreatePost from "./CreatePost";
+import Comment from "./Comment";
+import Post from "./Post";
 
-export{
-    PostsList,
-    App,
-    Navbar,
-    Home,
-    Page404,
-    Login,
-    Signup,
-    Settings,
-    FriendsList,
-    FriendsListItem,
-    CreatePost
-}
+export {
+  PostsList,
+  App,
+  Navbar,
+  Home,
+  Page404,
+  Login,
+  Signup,
+  Settings,
+  FriendsList,
+  FriendsListItem,
+  CreatePost,
+  Comment,
+  Post,
+};
